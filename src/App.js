@@ -23,13 +23,23 @@ function App() {
 
   const searchWeather = e => {
     if (e.key === "Enter") {
-      fetch(`${base_url}city=${searchQuery}&country=us&units=${units}&key=${api_key}`)
-        .then(res =>res.json())
-        .then(result => {
-          setWeather(result.data[0]);
-          setSearchQuerty('');
-        })
-        .catch(error => console.log('Bad request: ' + error))
+      if (searchBy === "city") {
+        fetch(`${base_url}city=${searchQuery}&country=us&units=${units}&key=${api_key}`)
+          .then(res => res.json())
+          .then(result => {
+            setWeather(result.data[0]);
+            setSearchQuerty('');
+          })
+          .catch(error => console.log('Bad request: ' + error))
+      } else {
+        fetch(`${base_url}postal_code=${searchQuery}&units=${units}&key=${api_key}`)
+          .then(res => res.json())
+          .then(result => {
+            setWeather(result.data[0]);
+            setSearchQuerty('');
+          })
+          .catch(error => console.log('Bad request: ' + error))
+      }
     }
   }
 
@@ -49,13 +59,12 @@ function App() {
           value={searchQuery}
           onKeyPress={e => searchWeather(e)}
           onChange={e => updateSearchQuery(e)} ></input>
-        <select name="unit" value={units} onChange={updateUnit} id="unit_type">
-          <option value="metric">M</option>
-          <option value="scientific">S</option>
-          <option value="fahrenheit">I</option>
+        <select name="unit" value={units} onChange={updateUnit} id="select_unit_type">
+          <option id='fahrenheit' value="I">F</option>
+          <option id='metric' value="M">C</option>
         </select>
       </div>
-      {(typeof weather.city_name !== 'undefined') ? (<Weather {...weather} />) : ("")};
+      {(typeof weather.city_name !== 'undefined') ? (<Weather units={units} {...weather} />) : ("")}
     </div>
   );
 }

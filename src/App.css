@@ -17,28 +17,28 @@ select:focus {
 .search_bar_container {
   width: 100%;
   display: flex;
-  margin: 0px auto;
+  margin: 40px auto;
   justify-content: center;
 }
 
 #select_search_by {
   border-radius: 15px 15px;
-  font-size: 1.3vw;
+  font-size: 1.5vw;
   padding: 1px 4px;
   font-weight: bold;
 }
 
 #searchBox {
   width: 20%;
-  font-size: 1.3vw;
+  font-size: 2vw;
   border-radius: 15px 15px;
   padding: 5px 10px;
 }
 
-#unit_type {
+#select_unit_type {
   border-radius: 10px 10px;
   padding: 4px;
-  font-size: 1vw;
+  font-size: 1.5vw;
   text-align: center;
   font-weight: bold;
 }
@@ -48,9 +48,11 @@ select:focus {
   border-radius: 10px 10px;
   width: 45%;
   color: white;
-  margin: 0 auto;
+  margin: 80px auto;
   justify-content: center;
   text-align: center;
+  box-shadow: 0 0 10px 5px;
+  padding: 4px;
 }
 
 #location {
